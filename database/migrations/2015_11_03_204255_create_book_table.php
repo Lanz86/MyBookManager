@@ -17,6 +17,8 @@ class CreateBookTable extends Migration
             $table->string('title', 256);
             $table->string('isbn', 18)->unique();
             $table->string('description');
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
