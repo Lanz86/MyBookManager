@@ -19,7 +19,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        //$includes = $request->query('includes');
+        $books = Book::whit('authors');
         return Response::json($books, 200);
     }
 

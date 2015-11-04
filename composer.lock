@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c6026b96e6fa11a641b51a6ba976f5e",
-    "content-hash": "5bd58fd976f1ee3e9611bc37c006ec46",
+    "hash": "ebc348c847c72d7d874ecf7691afbc5c",
+    "content-hash": "1bce61ff3081599a46b6e4bd914b1121",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -789,6 +789,238 @@
             "time": "2015-09-19 14:15:08"
         },
         {
+            "name": "nilportugues/api-transformer",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nilportugues/api-transformer.git",
+                "reference": "67aed487c78ef7b111f5f8ef72b1cb0d1ebf9f60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nilportugues/api-transformer/zipball/67aed487c78ef7b111f5f8ef72b1cb0d1ebf9f60",
+                "reference": "67aed487c78ef7b111f5f8ef72b1cb0d1ebf9f60",
+                "shasum": ""
+            },
+            "require": {
+                "nilportugues/serializer": "~1.1",
+                "php": ">=5.5.0",
+                "psr/http-message": "~1.0",
+                "zendframework/zend-diactoros": "^1.1.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.9",
+                "mmoreram/php-formatter": "dev-master",
+                "nilportugues/php_backslasher": "~0.2",
+                "phpunit/phpunit": "5.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NilPortugues\\Api\\Http\\": "src/Http/",
+                    "NilPortugues\\Api\\Mapping\\": "src/Mapping/",
+                    "NilPortugues\\Api\\Mappings\\": "src/Mappings/",
+                    "NilPortugues\\Api\\Transformer\\": "src/Transformer/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nil Portugués Calderó",
+                    "email": "contact@nilportugues.com",
+                    "role": "Project Lead Developer"
+                }
+            ],
+            "description": "Base library providing the core functionality for API transformation.",
+            "homepage": "http://nilportugues.com",
+            "keywords": [
+                "api",
+                "psr7",
+                "response",
+                "serializer",
+                "transformer"
+            ],
+            "time": "2015-11-02 22:31:24"
+        },
+        {
+            "name": "nilportugues/json-api",
+            "version": "1.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nilportugues/jsonapi-transformer.git",
+                "reference": "1f6ef060b12df5e360903521cd82debb56ccb0d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nilportugues/jsonapi-transformer/zipball/1f6ef060b12df5e360903521cd82debb56ccb0d4",
+                "reference": "1f6ef060b12df5e360903521cd82debb56ccb0d4",
+                "shasum": ""
+            },
+            "require": {
+                "nilportugues/api-transformer": "~1.2",
+                "php": ">=5.5.0",
+                "symfony/http-foundation": "^2.7",
+                "symfony/psr-http-message-bridge": "0.2"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.9",
+                "mmoreram/php-formatter": "dev-master",
+                "phpunit/phpunit": "4.4.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NilPortugues\\Api\\JsonApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nil Portugués Calderó",
+                    "email": "contact@nilportugues.com",
+                    "role": "Project Lead Developer"
+                }
+            ],
+            "description": "Serializer transformers outputting valid API responses in JSON, JSON API and HAL+JSON API formats.",
+            "homepage": "http://nilportugues.com",
+            "keywords": [
+                "api",
+                "json",
+                "jsonapi",
+                "psr7",
+                "response",
+                "serializer",
+                "transformer"
+            ],
+            "time": "2015-10-23 09:57:08"
+        },
+        {
+            "name": "nilportugues/laravel5-json-api",
+            "version": "1.2.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nilportugues/laravel5-jsonapi-transformer.git",
+                "reference": "89bc2a5f5a25af05d75dcf285ffc53765675e00f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nilportugues/laravel5-jsonapi-transformer/zipball/89bc2a5f5a25af05d75dcf285ffc53765675e00f",
+                "reference": "89bc2a5f5a25af05d75dcf285ffc53765675e00f",
+                "shasum": ""
+            },
+            "require": {
+                "nilportugues/json-api": "~1.0",
+                "symfony/psr-http-message-bridge": "~0.2"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.9",
+                "laravel/laravel": "5.*",
+                "nilportugues/php_backslasher": "~0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NilPortugues\\Laravel5\\JsonApiSerializer\\": "src/NilPortugues/Laravel5/JsonApiSerializer/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nil Portugués Calderó",
+                    "email": "contact@nilportugues.com",
+                    "role": "Project Lead Developer"
+                }
+            ],
+            "description": "Laravel 5 JSON API Transformer Package",
+            "homepage": "http://nilportugues.com",
+            "keywords": [
+                "api",
+                "json",
+                "jsonapi",
+                "laravel",
+                "laravel5",
+                "lumen",
+                "psr7",
+                "response",
+                "serializer",
+                "transformer"
+            ],
+            "time": "2015-11-02 22:24:24"
+        },
+        {
+            "name": "nilportugues/serializer",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nilportugues/serializer.git",
+                "reference": "7d3d2119269bb25af1c3e2fc117d3428f9611548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nilportugues/serializer/zipball/7d3d2119269bb25af1c3e2fc117d3428f9611548",
+                "reference": "7d3d2119269bb25af1c3e2fc117d3428f9611548",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "symfony/yaml": "^2.7"
+            },
+            "require-dev": {
+                "doctrine/collections": "^1.3",
+                "fabpot/php-cs-fixer": "^1.9",
+                "mmoreram/php-formatter": "dev-master",
+                "nilportugues/php_backslasher": "~0.2",
+                "phpunit/phpunit": "5.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NilPortugues\\Serializer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nil Portugués Calderó",
+                    "email": "contact@nilportugues.com",
+                    "role": "Project Lead Developer"
+                },
+                {
+                    "name": "Zumba Fitness, LLC",
+                    "email": "engineering@zumba.com",
+                    "role": "Author of the original idea: https://github.com/zumba/json-serializer"
+                },
+                {
+                    "name": "Juan Basso",
+                    "email": "juan.basso@zumba.com",
+                    "role": "Author of the original idea: https://github.com/zumba/json-serializer"
+                }
+            ],
+            "description": "Serialize PHP variables, including objects, in any format. Support to unserialize it too.",
+            "homepage": "http://nilportugues.com",
+            "keywords": [
+                "json",
+                "serialize",
+                "serializer"
+            ],
+            "time": "2015-11-02 22:52:09"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "1.0.10",
             "source": {
@@ -832,6 +1064,55 @@
                 "random"
             ],
             "time": "2015-10-23 13:21:37"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+                "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2015-05-04 20:22:00"
         },
         {
             "name": "psr/log",
@@ -1489,6 +1770,60 @@
             "time": "2015-10-23 14:47:27"
         },
         {
+            "name": "symfony/psr-http-message-bridge",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/psr-http-message-bridge.git",
+                "reference": "dc7e308e1dc2898a46776e2221a643cb08315453"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/dc7e308e1dc2898a46776e2221a643cb08315453",
+                "reference": "dc7e308e1dc2898a46776e2221a643cb08315453",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "psr/http-message": "~1.0",
+                "symfony/http-foundation": "~2.3|~3.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0"
+            },
+            "suggest": {
+                "zendframework/zend-diactoros": "To use the Zend Diactoros factory"
+            },
+            "type": "symfony-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bridge\\PsrHttpMessage\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "PSR HTTP message bridge",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr-7"
+            ],
+            "time": "2015-05-29 17:57:12"
+        },
+        {
             "name": "symfony/routing",
             "version": "v2.7.6",
             "source": {
@@ -1675,6 +2010,52 @@
             "time": "2015-10-25 17:17:38"
         },
         {
+            "name": "symfony/yaml",
+            "version": "v2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca9019c88fbe250164affd107bc8057771f3f4d",
+                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-11 09:39:48"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v1.1.1",
             "source": {
@@ -1719,6 +2100,56 @@
                 "environment"
             ],
             "time": "2015-05-30 15:59:26"
+        },
+        {
+            "name": "zendframework/zend-diactoros",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-diactoros.git",
+                "reference": "3f0ce6c0ba2106e018fb514a9f09dbb91eb6bfd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/3f0ce6c0ba2106e018fb514a9f09dbb91eb6bfd0",
+                "reference": "3f0ce6c0ba2106e018fb514a9f09dbb91eb6bfd0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "psr/http-message": "~1.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "~1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.6",
+                "squizlabs/php_codesniffer": "^2.3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev",
+                    "dev-develop": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Diactoros\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "description": "PSR HTTP Message implementations",
+            "homepage": "https://github.com/zendframework/zend-diactoros",
+            "keywords": [
+                "http",
+                "psr",
+                "psr-7"
+            ],
+            "time": "2015-10-16 15:24:05"
         }
     ],
     "packages-dev": [
@@ -2896,52 +3327,6 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2015-06-21 13:59:46"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "v2.7.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca9019c88fbe250164affd107bc8057771f3f4d",
-                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2015-10-11 09:39:48"
         }
     ],
     "aliases": [],

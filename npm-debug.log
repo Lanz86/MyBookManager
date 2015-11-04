@@ -1,0 +1,145 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'angularjs',
+1 verbose cli   'angular-ngroute' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
+5 silly cache add args [ 'angularjs', null ]
+6 verbose cache add spec angularjs
+7 silly cache add args [ 'angular-ngroute', null ]
+8 verbose cache add spec angular-ngroute
+9 silly cache add parsed spec { raw: 'angularjs',
+9 silly cache add   scope: null,
+9 silly cache add   name: 'angularjs',
+9 silly cache add   rawSpec: '',
+9 silly cache add   spec: '*',
+9 silly cache add   type: 'range' }
+10 verbose addNamed angularjs@*
+11 silly addNamed semver.valid null
+12 silly addNamed semver.validRange *
+13 silly addNameRange { name: 'angularjs', range: '*', hasData: false }
+14 silly mapToRegistry name angularjs
+15 silly mapToRegistry using default registry
+16 silly mapToRegistry registry https://registry.npmjs.org/
+17 silly mapToRegistry uri https://registry.npmjs.org/angularjs
+18 verbose addNameRange registry:https://registry.npmjs.org/angularjs not in flight; fetching
+19 silly cache add parsed spec { raw: 'angular-ngroute',
+19 silly cache add   scope: null,
+19 silly cache add   name: 'angular-ngroute',
+19 silly cache add   rawSpec: '',
+19 silly cache add   spec: '*',
+19 silly cache add   type: 'range' }
+20 verbose addNamed angular-ngroute@*
+21 silly addNamed semver.valid null
+22 silly addNamed semver.validRange *
+23 silly addNameRange { name: 'angular-ngroute', range: '*', hasData: false }
+24 silly mapToRegistry name angular-ngroute
+25 silly mapToRegistry using default registry
+26 silly mapToRegistry registry https://registry.npmjs.org/
+27 silly mapToRegistry uri https://registry.npmjs.org/angular-ngroute
+28 verbose addNameRange registry:https://registry.npmjs.org/angular-ngroute not in flight; fetching
+29 verbose request uri https://registry.npmjs.org/angularjs
+30 verbose request no auth needed
+31 info attempt registry request try #1 at 21:13:44
+32 verbose request id 3165aa5760618bbe
+33 http request GET https://registry.npmjs.org/angularjs
+34 verbose request uri https://registry.npmjs.org/angular-ngroute
+35 verbose request no auth needed
+36 info attempt registry request try #1 at 21:13:44
+37 http request GET https://registry.npmjs.org/angular-ngroute
+38 http 200 https://registry.npmjs.org/angularjs
+39 silly get cb [ 200,
+39 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+39 silly get     etag: '"DA6I6I6ODII1GLDRMQ0ARHNLK"',
+39 silly get     'content-type': 'application/json',
+39 silly get     'cache-control': 'max-age=60',
+39 silly get     'content-length': '1879',
+39 silly get     'accept-ranges': 'bytes',
+39 silly get     date: 'Wed, 04 Nov 2015 20:13:47 GMT',
+39 silly get     via: '1.1 varnish',
+39 silly get     age: '0',
+39 silly get     connection: 'keep-alive',
+39 silly get     'x-served-by': 'cache-fra1244-FRA',
+39 silly get     'x-cache': 'MISS',
+39 silly get     'x-cache-hits': '0',
+39 silly get     'x-timer': 'S1446668027.542842,VS0,VE232',
+39 silly get     vary: 'Accept' } ]
+40 verbose get saving angularjs to C:\Users\Antonio\AppData\Roaming\npm-cache\registry.npmjs.org\angularjs\.cache.json
+41 silly addNameRange number 2 { name: 'angularjs', range: '*', hasData: true }
+42 silly addNameRange versions [ 'angularjs', [ '0.0.1' ] ]
+43 verbose addNamed angularjs@0.0.1
+44 silly addNamed semver.valid 0.0.1
+45 silly addNamed semver.validRange 0.0.1
+46 silly mapToRegistry name angularjs
+47 silly mapToRegistry using default registry
+48 silly mapToRegistry registry https://registry.npmjs.org/
+49 silly mapToRegistry uri https://registry.npmjs.org/angularjs
+50 verbose addRemoteTarball https://registry.npmjs.org/angularjs/-/angularjs-0.0.1.tgz not in flight; adding
+51 verbose addRemoteTarball [ 'https://registry.npmjs.org/angularjs/-/angularjs-0.0.1.tgz',
+51 verbose addRemoteTarball   '496f50c7141515e741ea976de891def0838b3f19' ]
+52 info retry fetch attempt 1 at 21:13:45
+53 info attempt registry request try #1 at 21:13:45
+54 http fetch GET https://registry.npmjs.org/angularjs/-/angularjs-0.0.1.tgz
+55 http fetch 200 https://registry.npmjs.org/angularjs/-/angularjs-0.0.1.tgz
+56 silly fetchAndShaCheck shasum 496f50c7141515e741ea976de891def0838b3f19
+57 verbose addTmpTarball C:\Users\Antonio\AppData\Local\Temp\npm-10844-89d6856c\registry.npmjs.org\angularjs\-\angularjs-0.0.1.tgz not in flight; adding
+58 verbose addTmpTarball already have metadata; skipping unpack for angularjs@0.0.1
+59 silly cache afterAdd angularjs@0.0.1
+60 verbose afterAdd C:\Users\Antonio\AppData\Roaming\npm-cache\angularjs\0.0.1\package\package.json not in flight; writing
+61 verbose afterAdd C:\Users\Antonio\AppData\Roaming\npm-cache\angularjs\0.0.1\package\package.json written
+62 http 404 https://registry.npmjs.org/angular-ngroute
+63 verbose headers { 'content-type': 'application/json',
+63 verbose headers   'cache-control': 'max-age=0',
+63 verbose headers   'content-length': '2',
+63 verbose headers   'accept-ranges': 'bytes',
+63 verbose headers   date: 'Wed, 04 Nov 2015 20:13:48 GMT',
+63 verbose headers   via: '1.1 varnish',
+63 verbose headers   age: '0',
+63 verbose headers   connection: 'keep-alive',
+63 verbose headers   'x-served-by': 'cache-fra1221-FRA',
+63 verbose headers   'x-cache': 'MISS',
+63 verbose headers   'x-cache-hits': '0',
+63 verbose headers   'x-timer': 'S1446668027.549563,VS0,VE584' }
+64 silly get cb [ 404,
+64 silly get   { 'content-type': 'application/json',
+64 silly get     'cache-control': 'max-age=0',
+64 silly get     'content-length': '2',
+64 silly get     'accept-ranges': 'bytes',
+64 silly get     date: 'Wed, 04 Nov 2015 20:13:48 GMT',
+64 silly get     via: '1.1 varnish',
+64 silly get     age: '0',
+64 silly get     connection: 'keep-alive',
+64 silly get     'x-served-by': 'cache-fra1221-FRA',
+64 silly get     'x-cache': 'MISS',
+64 silly get     'x-cache-hits': '0',
+64 silly get     'x-timer': 'S1446668027.549563,VS0,VE584' } ]
+65 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/angular-ngroute
+65 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:239:14)
+65 verbose stack     at Request._callback (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:170:14)
+65 verbose stack     at Request.self.callback (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:344:22)
+65 verbose stack     at Request.emit (events.js:110:17)
+65 verbose stack     at Request.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:1239:14)
+65 verbose stack     at Request.emit (events.js:129:20)
+65 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:1187:12)
+65 verbose stack     at IncomingMessage.emit (events.js:129:20)
+65 verbose stack     at _stream_readable.js:908:16
+65 verbose stack     at process._tickCallback (node.js:355:11)
+66 verbose statusCode 404
+67 verbose pkgid angular-ngroute
+68 verbose cwd c:\Projects\MyBookManager
+69 error Windows_NT 6.3.9600
+70 error argv "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "angularjs" "angular-ngroute"
+71 error node v0.12.2
+72 error npm  v2.7.4
+73 error code E404
+74 error 404 Registry returned 404 for GET on https://registry.npmjs.org/angular-ngroute
+74 error 404
+74 error 404 'angular-ngroute' is not in the npm registry.
+74 error 404 You should bug the author to publish it (or use the name yourself!)
+74 error 404
+74 error 404 Note that you can also install from a
+74 error 404 tarball, folder, http url, or git url.
+75 verbose exit [ 1, true ]
