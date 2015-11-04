@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
 
+    protected $fillable = ['title', 'isbn', 'description', 'user_id'];
+
     /**
      * Get Authors
      */

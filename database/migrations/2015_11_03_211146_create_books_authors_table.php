@@ -12,7 +12,7 @@ class CreateBooksAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('books_authors', function (Blueprint $table) {
+        Schema::create('book_author', function (Blueprint $table) {
             $table->integer('book_id');
             $table->foreign('book_id')->references('id')->to('books');
             $table->integer('author_id');
@@ -28,6 +28,6 @@ class CreateBooksAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('books_authors');
+        Schema::drop('book_author');
     }
 }
