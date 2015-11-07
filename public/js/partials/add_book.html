@@ -1,0 +1,37 @@
+<div class="page-header">
+    <h1>{{pageTitle}}</h1>
+</div>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Titolo</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" name="title" ng-model="newBook.title" placeholder="Titolo" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="isbn" class="col-sm-2 control-label">ISBN</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"  name="isbn" ng-model="newBook.isbn" placeholder="ISBN" required maxlength="18">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Descrizione</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" name="description" ng-model="newBook.description" required></textarea>
+        </div>
+    </div>
+    <legend>Autori</legend>
+    <div class="form-group">
+        <div class="checkbox" ng-repeat="author in listAllAuthors">
+            <label>
+                <input type="checkbox" ng-checked="author.selected" ng-model="author.selected">
+                {{ author.name }} {{ author.surname }}
+            </label>
+        </div>
+    </div>
+    <div class="form-group" style="float: right;">
+        <a href="/#books/" class="btn btn-danger">Annulla</a>
+        <button type="button" ng-click="save()" class="btn btn-primary">SALVA</button>
+    </div>
+    <a href="#/author/add/">Aggiungere Autore</a>
+</form>

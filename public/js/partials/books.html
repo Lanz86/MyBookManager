@@ -1,22 +1,47 @@
-<table>
-    <thead>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                Nome
-            </th>
-            <th>
-                ISBN
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat='book in books'>
-            <td>{{$index +1 }}</td>
-            <td>{{book.title}}</td>
-            <td>{{book.isbn}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="page-header">
+    <h1>I TUOI LIBRI</h1>
+</div>
+<div ng-init="init()">
+    <table class="table table-striped">
+        <caption>
+            <div style="float:right;">
+                <a href="#/books/add" class="btn btn-primary">Aggiungi Libro</a>
+            </div>
+        </caption>
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    ISBN
+                </th>
+                <th>
+                    Autori
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='book in books'>
+                <td>{{$index +1 }}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.isbn}}</td>
+                <td ng-repeat="auth in book.authors">
+                    <a href="#/authors/edit/{{auth.id}}">
+                        <span class="label label-default">{{auth.name}} {{auth.surname}}</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#/books/edit/{{book.id}}" class="glyphicon glyphicon-edit" title="Modifica"></a>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="delete($index)" title="Cancella"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

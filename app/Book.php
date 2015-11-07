@@ -13,6 +13,6 @@ class Book extends Model
      * Get Authors
      */
     public function authors() {
-        return $this->belongsToMany('App\Author');
+        return $this->belongsToMany('App\Author', 'book_author');
     }
 }

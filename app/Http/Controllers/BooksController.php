@@ -19,8 +19,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //$includes = $request->query('includes');
-        $books = Book::whit('authors');
+
+        $books = Book::all()->load('authors');
         return Response::json($books, 200);
     }
 
@@ -34,11 +34,15 @@ class BooksController extends Controller
     {
         $rules = [
             'title' => 'required',
-            'isbn' => 'required|',
-            'description' => 'required'
+            'isbn' => 'required',
+            'description' => 'required',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $book =  $request->all();
+
+        $book['user_id'] = 1;
+
+        $validator = Validator::make($book, $rules);
 
         if($validator->fails()) {
             return [
@@ -47,7 +51,16 @@ class BooksController extends Controller
             ];
         }
 
-        Book::create($request->all());
+        $book = Book::create($book);
+
+        $authorsId = [];
+
+        foreach($request->all()['authors'] as $author) {
+            $authorsId[] = $author['id'];
+        }
+
+        $book->authors()->sync($authorsId);
+
         return  ['created' => true];
     }
 
@@ -59,7 +72,7 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        return Book::findOrFail($id);
+        return Book::findOrFail($id)->load('authors');
     }
 
     /**
@@ -72,7 +85,16 @@ class BooksController extends Controller
     public function update(Request $request, $id)
     {
         $book = Book::findOrFail($id);
+
         $book->update($request->all());
+
+        $authorsId = [];
+
+        foreach($request->all()['authors'] as $author) {
+            $authorsId[] = $author['id'];
+        }
+
+        $book->authors()->sync($authorsId);
 
         return  ['updated' => true];
     }

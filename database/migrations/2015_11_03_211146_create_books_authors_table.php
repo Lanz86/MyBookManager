@@ -17,7 +17,7 @@ class CreateBooksAuthorsTable extends Migration
             $table->foreign('book_id')->references('id')->to('books');
             $table->integer('author_id');
             $table->foreign('author_id')->references('id')->to('authors');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 
