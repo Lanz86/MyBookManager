@@ -31,8 +31,11 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        Author::create($request->all());
-        return  ['created' => true];
+        $author = Author::create($request->all());
+        return  [
+                    'success' => true,
+                    'data' => $author
+                ];
     }
 
     /**
@@ -57,7 +60,7 @@ class AuthorsController extends Controller
     public function update(Request $request, $id)
     {
         $author = Author::findOrFail($id);
-        $author->update($request->getAll());
+        $author->update($request->all());
 
         return  ['updated' => true];
     }

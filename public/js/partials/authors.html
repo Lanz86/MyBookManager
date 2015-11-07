@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h1>AUTORI</h1>
+</div>
+<div>
+    <table class="table table-striped">
+        <caption>
+            <div style="float:right;">
+                <a href="#/authors/add" class="btn btn-primary">Aggiungi Autore</a>
+            </div>
+        </caption>
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Cognome
+            </th>
+            <th>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat='author in authors'>
+            <td>{{$index +1 }}</td>
+            <td>{{author.name}}</td>
+            <td>{{author.surname}}</td>
+            <td>
+                <a href="#/authors/edit/{{author.id}}" class="glyphicon glyphicon-edit" title="Modifica"></a>
+                <a href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="delete($index)" title="Cancella"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -12,26 +12,39 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
     $scope.mode = 'show';
 
     $scope.init = function() {
-        console.log($location.$$url.replace(/\d/,''));
-        switch($location.$$url.replace(/\d/,'')) {
+        switch($location.$$url.replace(/\d+/,'')) {
             case '/books':
                 $scope.loadBooks();
                 break;
             case '/books/add':
                 $scope.mode = 'add';
                 $scope.pageTitle = 'AGGIUNGI NUOVO LIBRO';
-                $scope.newBook = {
-                    title: '',
-                    description: '',
-                    isbn: '',
-                    authors: [],
-                };
+                if($rootScope.newBook) {
+                    console.log($rootScope.newBook);
+                    $scope.newBook = $rootScope.newBook;
+                    $rootScope.newBook = undefined;
+                }
+                else {
+                    $scope.newBook = {
+                        title: '',
+                        description: '',
+                        isbn: '',
+                        authors: [],
+                    };
+                }
                 $scope.loadAuthors();
                 break;
             case '/books/edit/':
                 $scope.mode = 'edit';
                 $scope.pageTitle = 'MODIFICA LIBRO';
-                $scope.loadBook($routeParams.id);
+                if($rootScope.newBook) {
+                    $scope.newBook = $rootScope.newBook;
+                    $rootScope.newBook = undefined;
+                    $scope.loadAuthors();
+                } else {
+                    $scope.loadBook($routeParams.id);
+                }
+
                 break;
         }
     };
@@ -43,9 +56,13 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
     };
 
     $scope.loadBook = function(id) {
-        $http.get('/api/v1/books/'+ id).success(function(data) {
+        $http.get('/index.php/api/v1/books/'+ id).success(function(data) {
             $scope.newBook = data;
             $scope.loadAuthors();
+        }).error(function(data, status) {
+            if(status == 404) {
+                $location.path( "/s404" );
+            }
         });
     };
 
@@ -60,7 +77,7 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
     $scope.create = function() {
         $scope.newBook.authors = $scope.getSelectedAuthors();
 
-        $http.post('/api/v1/books', $scope.newBook).success(function(data) {
+        $http.post('/index.php/api/v1/books', $scope.newBook).success(function(data) {
             $location.path('books');
         });
     };
@@ -68,7 +85,7 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
     $scope.edit = function() {
         $scope.newBook.authors = $scope.getSelectedAuthors();
 
-        $http.patch('/api/v1/books/' + $scope.newBook.id, $scope.newBook).success(function(data) {
+        $http.put('/index.php/api/v1/books/' + $scope.newBook.id, $scope.newBook).success(function(data) {
             $location.path('books');
         });
     };
@@ -77,13 +94,13 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
         if(!confirm('Sei sicuro di voler eliminare il libro ' + $scope.books[index].title + '?')) return;
 
         var elementId = $scope.books[index].id;
-        $http.delete('/api/v1/books/' + elementId, $scope.newBook).success(function(data) {
+        $http.delete('/api/v1/books/' + elementId).success(function(data) {
             $scope.books.splice(index, 1);
         });
     };
 
     $scope.loadAuthors = function() {
-        $http.get('/api/v1/authors').success(function(data) {
+        $http.get('/index.php/api/v1/authors').success(function(data) {
             $scope.listAllAuthors = data;
 
             angular.forEach($scope.newBook.authors, function(value, ix) {
@@ -105,6 +122,18 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
 
         return selectedAuthors;
     };
+
+    $scope.addAuthor = function() {
+        var returnUrl = $scope.mode == 'edit' ? '/books/edit/' + $scope.newBook.id : '/books/add';
+
+        console.log(returnUrl);
+
+        $rootScope.newBook = angular.copy($scope.newBook);
+        $rootScope.returnUrl = returnUrl;
+
+        $location.path('/authors/add');
+    };
+
 
     $scope.init();
 });

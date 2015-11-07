@@ -20,8 +20,8 @@
             <textarea class="form-control" name="description" ng-model="newBook.description" required></textarea>
         </div>
     </div>
-    <legend>Autori</legend>
-    <div class="form-group">
+    <legend>Autori  <a style="float: right;" href="javascript:void(0)" ng-click="addAuthor()">Aggiungi Autore</a></legend>
+    <div class="form-group" style="max-height: 200px; overflow: auto;">
         <div class="checkbox" ng-repeat="author in listAllAuthors">
             <label>
                 <input type="checkbox" ng-checked="author.selected" ng-model="author.selected">
@@ -30,8 +30,7 @@
         </div>
     </div>
     <div class="form-group" style="float: right;">
-        <a href="/#books/" class="btn btn-danger">Annulla</a>
+        <a href="#books/" class="btn btn-danger">Annulla</a>
         <button type="button" ng-click="save()" class="btn btn-primary">SALVA</button>
     </div>
-    <a href="#/author/add/">Aggiungere Autore</a>
 </form>
