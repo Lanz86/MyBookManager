@@ -1,10 +1,10 @@
-app.controller('AuthorsController',  function($http, $rootScope, $scope, $location, $routeParams) {
-    $scope.itemsPerPage = 5;
-    $scope.currentPage = 0;
-
+app.controller('AuthorsController',  function($http, $rootScope, $scope, $location, $routeParams, $auth) {
 
     $scope.pageTitle = '';
     $scope.mode = 'show';
+
+    $scope.errorMessage = '';
+    $scope.showMessage = false;
 
     $scope.authors = [];
     $scope.newAuthor = null;
@@ -28,6 +28,10 @@ app.controller('AuthorsController',  function($http, $rootScope, $scope, $locati
     $scope.loadAuthors = function() {
         $http.get('/index.php/api/v1/authors').success(function(data) {
            $scope.authors = data;
+        }).error(function(data, status) {
+            if(status == 400) {
+                $location.path('/login');
+            }
         });
     };
 
@@ -37,6 +41,11 @@ app.controller('AuthorsController',  function($http, $rootScope, $scope, $locati
         }).error(function(data, status) {
             if(status == 404) {
                 $location.path( "/s404" );
+            } else if(status != 500) {
+                $location.path( "/login" );
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
             }
         });
     };
@@ -51,20 +60,48 @@ app.controller('AuthorsController',  function($http, $rootScope, $scope, $locati
 
     $scope.create = function() {
         $http.post('/index.php/api/v1/authors/', $scope.newAuthor).success(function(data) {
-            if($rootScope.returnUrl) {
-                if($rootScope.newBook) {
-                    $rootScope.newBook.authors.push(data.data);
+            if(data.success) {
+                if($rootScope.returnUrl) {
+                    if($rootScope.newBook) {
+                        $rootScope.newBook.authors.push(data.data);
+                    }
+                    $location.path($rootScope.returnUrl);
+                } else {
+                    $location.path('/authors');
                 }
-                $location.path($rootScope.returnUrl);
             } else {
-                $location.path('/authors');
+                $scope.errorMessage = data.message;
+                $scope.showMessage = true;
+            }
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
             }
         });
     };
 
     $scope.edit = function() {
         $http.put('/index.php/api/v1/authors/' + $scope.newAuthor.id, $scope.newAuthor).success(function(data) {
-            $location.path('/authors');
+            if(data.success) {
+                $location.path('/authors');
+            } else {
+                $scope.errorMessage = data.message;
+                $scope.showMessage = true;
+            }
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
+            }
         });
     };
 
@@ -74,6 +111,15 @@ app.controller('AuthorsController',  function($http, $rootScope, $scope, $locati
         var elementId = $scope.authors[index].id;
         $http.delete('/api/v1/authors/' + elementId).success(function(data) {
             $scope.authors.splice(index, 1);
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
+            }
         });
     };
 

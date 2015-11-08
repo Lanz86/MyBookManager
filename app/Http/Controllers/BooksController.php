@@ -9,9 +9,20 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Response;
 use Validator;
+use JWTAuth;
 
 class BooksController extends Controller
 {
+    private $rules = [
+    'title' => 'required',
+    'isbn' => 'required',
+    'description' => 'required',
+    ];
+
+    public function __construct()
+    {
+        $this->middleware('jwt.auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +30,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-
-        $books = Book::all()->load('authors');
-        return Response::json($books, 200);
+        $user = JWTAuth::parseToken()->authenticate();
+        $books = Book::all()->load('authors')->where('user_id', $user->id);
+        return $books;
     }
 
     /**
@@ -32,22 +43,20 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'title' => 'required',
-            'isbn' => 'required',
-            'description' => 'required',
-        ];
+        $user = JWTAuth::parseToken()->authenticate();
+
+
 
         $book =  $request->all();
 
-        $book['user_id'] = 1;
+        $book['user_id'] = $user->id;
 
-        $validator = Validator::make($book, $rules);
+        $validator = Validator::make($book, $this->rules);
 
         if($validator->fails()) {
             return [
-                'created' => false,
-                'errors'  => $validator->errors()->all()
+                'success' => false,
+                'message'  => $validator->errors()->all()
             ];
         }
 
@@ -61,7 +70,7 @@ class BooksController extends Controller
 
         $book->authors()->sync($authorsId);
 
-        return  ['created' => true];
+        return  ['success' => true, 'message' => $book];
     }
 
     /**
@@ -72,7 +81,8 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        return Book::findOrFail($id)->load('authors');
+        $user = JWTAuth::parseToken()->authenticate();
+        return Book::where('user_id', '=', $user->id)->findOrFail($id)->load('authors');
     }
 
     /**
@@ -84,7 +94,18 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::findOrFail($id);
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $validator = Validator::make($request->all(), $this->rules);
+
+        if($validator->fails()) {
+            return [
+                'success' => false,
+                'message'  => $validator->errors()->all()
+            ];
+        }
+
+        $book = Book::where('user_id', '=', $user->id)->findOrFail($id);
 
         $book->update($request->all());
 
@@ -96,7 +117,7 @@ class BooksController extends Controller
 
         $book->authors()->sync($authorsId);
 
-        return  ['updated' => true];
+        return  ['success' => true, 'message' => $book];
     }
 
     /**
@@ -107,7 +128,10 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        Book::destroy($id);
-        return ['deleted' => true];
+        $user = JWTAuth::parseToken()->authenticate();
+        $book = Book::where('user_id', '=', $user->id)->findOrFail($id);
+
+        Book::destroy($book->id);
+        return ['success' => true];
     }
 }

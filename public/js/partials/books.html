@@ -32,14 +32,16 @@
                 <td>{{$index +1 }}</td>
                 <td>{{book.title}}</td>
                 <td>{{book.isbn}}</td>
-                <td ng-repeat="auth in book.authors">
-                    <a href="#/authors/edit/{{auth.id}}">
-                        <span class="label label-default">{{auth.name}} {{auth.surname}}</span>
-                    </a>
+                <td>
+                    <span ng-repeat="auth in book.authors">
+                        <a href="#/authors/edit/{{auth.id}}">
+                            <span class="label label-default">{{auth.name}} {{auth.surname}}</span>
+                        </a>
+                    </span>
                 </td>
                 <td>
                     <a href="#/books/edit/{{book.id}}" class="glyphicon glyphicon-edit" title="Modifica"></a>
-                    <a href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="delete($index)" title="Cancella"></a>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="delete(book.id)" title="Cancella"></a>
                 </td>
             </tr>
         </tbody>

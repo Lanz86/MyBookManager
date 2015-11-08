@@ -11,6 +11,10 @@
 |
 */
 
+Route::post('api/v1/register', 'TokenAuthController@register');
+Route::post('api/v1/authenticate', 'TokenAuthController@authenticate');
+Route::get('api/v1/authenticate/user', 'TokenAuthController@getAuthenticatedUser');
+
 Route::group(array('prefix' => 'api/v1'), function() {
         Route::resource('books', 'BooksController');
     }
@@ -21,11 +25,6 @@ Route::group(array('prefix' => 'api/v1', ), function() {
     }
 );
 
-Route::group(array('prefix' => 'api/v1'), function() {
-    Route::resource('books_authors', 'BooksAuthorsController');
-}
-);
-
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/index.html#/books');
 });

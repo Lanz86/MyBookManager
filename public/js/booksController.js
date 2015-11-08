@@ -1,9 +1,11 @@
 /**
  * Created by Antonio on 04/11/2015.
  */
-app.controller('BooksController',  function($http, $rootScope, $scope, $location, $routeParams) {
+app.controller('BooksController',  function($http, $rootScope, $scope, $location, $routeParams, $auth) {
 
     $scope.pageTitle = '';
+    $scope.errorMessage = '';
+    $scope.showMessage = false;
 
     $scope.books = [];
     $scope.newBook = null;
@@ -51,17 +53,33 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
 
     $scope.loadBooks = function() {
         $http.get('/api/v1/books').success(function(data) {
-            $scope.books = data;
+            angular.forEach(data, function(element) {
+                $scope.books.push(element);
+            });
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
+            }
         });
     };
 
     $scope.loadBook = function(id) {
         $http.get('/index.php/api/v1/books/'+ id).success(function(data) {
-            $scope.newBook = data;
+            $scope.newBook =  data;
             $scope.loadAuthors();
         }).error(function(data, status) {
-            if(status == 404) {
-                $location.path( "/s404" );
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
             }
         });
     };
@@ -78,7 +96,21 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
         $scope.newBook.authors = $scope.getSelectedAuthors();
 
         $http.post('/index.php/api/v1/books', $scope.newBook).success(function(data) {
-            $location.path('books');
+            if(data.success) {
+                $location.path('books');
+            } else {
+                $scope.errorMessage = data.message
+                $scope.showMessage = data.message;
+            }
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
+            }
         });
     };
 
@@ -86,16 +118,50 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
         $scope.newBook.authors = $scope.getSelectedAuthors();
 
         $http.put('/index.php/api/v1/books/' + $scope.newBook.id, $scope.newBook).success(function(data) {
-            $location.path('books');
+            console.log(data);
+            if(data.success) {
+                $location.path('books');
+            } else {
+                $scope.errorMessage = data.message;
+                $scope.showMessage = true;
+            }
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
+            }
         });
     };
 
-    $scope.delete = function(index) {
+    $scope.delete = function(id) {
+
+        var index = -1;
+
+        angular.forEach($scope.books, function(val, ix) {
+            if(val.id == id) {
+                index = ix;
+                return;
+            }
+        });
+
         if(!confirm('Sei sicuro di voler eliminare il libro ' + $scope.books[index].title + '?')) return;
 
         var elementId = $scope.books[index].id;
         $http.delete('/api/v1/books/' + elementId).success(function(data) {
+            console.log($scope.books);
             $scope.books.splice(index, 1);
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+
+            }
         });
     };
 
@@ -110,6 +176,15 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
                     }
                 });
             });
+        }).error(function(data, status) {
+            if (status == 404) {
+                $location.path("/s404");
+            } else if (status != 500) {
+                $location.path("/login");
+            } else {
+                $scope.errorMessage = data;
+                $scope.showMessage = true;
+            }
         });
     };
 

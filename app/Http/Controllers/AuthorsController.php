@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Response;
+use Validator;
+use JWTAuth;
 
 class AuthorsController extends Controller
 {
+    private $rules = [
+        'name' => 'required',
+        'surname' => 'required',
+    ];
+
+    public function __construct()
+    {
+        $this->middleware('jwt.auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +42,15 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), $this->rules);
+
+        if($validator->fails()) {
+            return [
+                'success' => false,
+                'message'  => $validator->errors()->all()
+            ];
+        }
+
         $author = Author::create($request->all());
         return  [
                     'success' => true,
@@ -60,9 +80,19 @@ class AuthorsController extends Controller
     public function update(Request $request, $id)
     {
         $author = Author::findOrFail($id);
+
+        $validator = Validator::make($request->all(), $this->rules);
+
+        if($validator->fails()) {
+            return [
+                'success' => false,
+                'message'  => $validator->errors()->all()
+            ];
+        }
+
         $author->update($request->all());
 
-        return  ['updated' => true];
+        return  ['success' => true, 'message' => $author];
     }
 
     /**
@@ -74,5 +104,8 @@ class AuthorsController extends Controller
     public function destroy($id)
     {
         Author::destroy($id);
+
+        return  ['success' => true];
+
     }
 }
