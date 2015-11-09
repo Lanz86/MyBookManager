@@ -4,7 +4,7 @@
 var app = angular.module('myBookManagerApp', ['ngRoute', 'satellizer'])
     .config(function($routeProvider, $authProvider, $provide) {
 
-        $authProvider.loginUrl = '/api/v1/authenticate';
+        $authProvider.loginUrl = '/index.php/api/v1/authenticate';
 
         $routeProvider.
             when('/login', { templateUrl: '/js/partials/login.html', controller: 'AuthController' }).

@@ -52,7 +52,7 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
     };
 
     $scope.loadBooks = function() {
-        $http.get('/api/v1/books').success(function(data) {
+        $http.get('/index.php/api/v1/books').success(function(data) {
             angular.forEach(data, function(element) {
                 $scope.books.push(element);
             });
@@ -151,7 +151,7 @@ app.controller('BooksController',  function($http, $rootScope, $scope, $location
         if(!confirm('Sei sicuro di voler eliminare il libro ' + $scope.books[index].title + '?')) return;
 
         var elementId = $scope.books[index].id;
-        $http.delete('/api/v1/books/' + elementId).success(function(data) {
+        $http.post('/index.php/api/v1/books/' + elementId +'/delete').success(function(data) {
             console.log($scope.books);
             $scope.books.splice(index, 1);
         }).error(function(data, status) {

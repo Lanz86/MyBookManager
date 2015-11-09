@@ -15,7 +15,7 @@ app.controller('AuthController',  function($auth, $location, $http,$rootScope, $
 
         $auth.login(credentials).then(function() {
 
-            return $http.get('index.php/api/v1/authenticate/user');
+            return $http.get('/index.php/api/v1/authenticate/user');
 
         }, function(error) {
             $scope.loginError = true;

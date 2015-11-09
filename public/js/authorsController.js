@@ -109,7 +109,7 @@ app.controller('AuthorsController',  function($http, $rootScope, $scope, $locati
         if(!confirm('Sei sicuro di voler eliminare l\'autore ' + $scope.authors[index].name + ' ' + $scope.authors[index].surname + '?')) return;
 
         var elementId = $scope.authors[index].id;
-        $http.delete('/api/v1/authors/' + elementId).success(function(data) {
+        $http.post('/index.php/api/v1/authors/' + elementId + '/delete/').success(function(data) {
             $scope.authors.splice(index, 1);
         }).error(function(data, status) {
             if (status == 404) {

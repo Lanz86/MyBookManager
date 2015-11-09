@@ -15,6 +15,10 @@ Route::post('api/v1/register', 'TokenAuthController@register');
 Route::post('api/v1/authenticate', 'TokenAuthController@authenticate');
 Route::get('api/v1/authenticate/user', 'TokenAuthController@getAuthenticatedUser');
 
+
+Route::post('api/v1/authors/{id}/delete', 'AuthorsController@destroy');
+Route::post('api/v1/books/{id}/delete', 'BooksController@destroy');
+
 Route::group(array('prefix' => 'api/v1'), function() {
         Route::resource('books', 'BooksController');
     }
